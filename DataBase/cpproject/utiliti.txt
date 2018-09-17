@@ -1,0 +1,11 @@
+00_kachi_banspati(20kg)		90			5
+01_super_karnal(20kg)		110			5
+02_fine_atta(20KG)			700			10
+03_super_fine_atta(20kg)	750			10
+04_iodized					25			30
+05_simpleSALT				10			50
+06_candy(half__role)		15			15
+07_rio(half__role)			15			20
+08_national__Ketchup		120  		12
+09_nodels					30			40
+10_sugar(5kg)				300			35

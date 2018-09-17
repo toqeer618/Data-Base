@@ -1,0 +1,3 @@
+CREATE PROCEDURE PRG_AVG_PRICE(out avg_price decimal)
+SELECT AVG(P_PRICE) INTO avg_price FROM product;
+

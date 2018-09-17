@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<signal.h>
+#include<unistd.h>
+
+void handle(int sigint)
+{
+	printf("i am not going to die \n ");
+}
+
+int main()
+{		
+		int a=fork();
+	if(a==0)
+	{	
+		while(1)
+		{
+		
+		signal(SIGTERM ,handle);	
+		sleep(1);
+		}
+	}
+	else
+	{
+		for(int i=0;i<5;i++)
+		{
+			sleep(1);
+			kill(a,SIGTERM);
+			
+		}	
+	}
+}

@@ -1,0 +1,12 @@
+00_Belt				120			12
+ 01_chain			5000		18
+ 02_Bracelet		1200		14
+03_Collar_pin		200			18
+ 04_Crown			500			22
+05_Cufflink			600			24
+06_Earring			3500		7
+ 07_pin_Necklace	50			50
+ 08_Pendant			1500		28
+ 09_Tie_clip		150			21
+10_Tie_pin			60			44
+ 11_ring			3000		16

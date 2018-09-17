@@ -1,0 +1,147 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+int turn = 0;
+int flag[2]={0,0};
+double balance = 0;
+double temp1 = 0;
+double temp2 = 0;
+int times = 0;
+void *credit(void * arg)
+{ 	
+	 int a = *(int *) arg;
+	while(1)
+	{
+	flag[0]=1;
+	turn=1;
+	
+	while(turn==1 && flag[1]==1){}
+	
+	long local=balance;
+	local=local+a;
+	balance=local;
+	flag[0]=0;
+	
+	sleep(1);
+	}
+	
+	
+}
+void *debit(void  * arg)
+{ 
+	int a = *(int *) arg;
+	while(1)
+	{
+	flag[1]=1;
+	turn=0;
+	
+	while(turn==0 && flag[0]==1){}
+	
+	long local=balance;
+	local=local-a;
+	balance=local;
+	flag[1]=0;
+	
+	sleep(1);
+	}
+}
+int main()
+{ 
+		int choice;
+		pthread_t credit_thread, debit_thread;
+		while(1)
+			{
+				system("clear");
+				printf("Name: Alif Noon\nAcc No.: 420\n");
+				printf("Available Balance: Rs. %f/-\n", balance);
+				printf("\nChoose Transaction Type:\n");
+				printf("------------------------\n");
+				printf("1. Account Credit \n2. Account Debit \n"
+					   "3.One Credit + One Debit\n"
+					   "4.Multiple Credits\n"
+					   "5.Multiple Debits\n");
+				printf("6. Multiple Credit and Debit\n");
+				printf("7.Exit\n");
+scanf("%d", &choice);
+if (choice == 1)
+{ printf("Enter amount to credit\n");
+scanf("%d", &temp1);
+printf("main. balance = %d\n", balance);
+pthread_create(&credit_thread, NULL,
+credit, &temp1);
+}
+else if (choice == 2)
+{ printf("Enter amount to debit\n");
+scanf("%d", &temp2);
+pthread_create(&debit_thread, NULL,
+debit, &temp2);
+}
+else if (choice == 3)
+{ printf("Enter amount to credit\n");
+scanf("%d", &temp1);
+printf("Enter amount to Debit\n");
+scanf("%d", &temp2);
+pthread_create(&credit_thread, NULL,
+credit, &temp1);
+pthread_create(&debit_thread, NULL,
+debit, &temp2);
+}
+else if (choice == 4)
+{ printf("\nHow many times to make\n"
+"credit transaction?\n");
+scanf("%d", &times);
+printf("Enter amount to credit\n");
+scanf("%d", &temp1);
+int loop;
+for (loop = 0; loop < times; loop++)
+{ pthread_create(&credit_thread, NULL,
+credit, &temp1);
+}
+}
+else if (choice == 5)
+{ printf("\nHow many times to make\n"
+"debit transaction?\n");
+scanf("%d", &times);
+printf("Enter amount to debit\n");
+scanf("%d", &temp2);
+int loop;
+for (loop = 0; loop < times; loop++)
+{ pthread_create(&debit_thread, NULL,
+debit, &temp2);
+}
+}
+else if (choice == 6)
+{ printf("Enter amount to credit\n");
+scanf("%d", &temp1);
+printf("Enter amount to Debit\n");
+scanf("%d", &temp2);
+printf("Enter number of times to\
+Credit and Debit\n");
+scanf("%d", &times);
+//pthread_create(&credit_thread, NULL,
+//credit, &temp1);
+int loop;
+for (loop = 0; loop < times; loop++)
+{ pthread_create(&credit_thread, NULL,
+credit, &temp1);
+}
+for (loop = 0; loop < times; loop++)
+{ pthread_create(&debit_thread, NULL,
+debit, &temp2);
+}
+}
+else if (choice == 7)
+{  
+	exit(0);
+}
+else
+{ printf("Wrong Choice");
+continue;
+}
+}
+pthread_join(credit_thread, NULL);
+pthread_join(debit_thread, NULL);
+printf("Account Summary:\n----------------\n");
+printf("Available Balance: Rs. %f/-\n", balance);
+exit(0);
+}

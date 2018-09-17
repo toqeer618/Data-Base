@@ -1,0 +1,67 @@
+ create database last12;
+use last12;
+create table users(
+user_id int(3) primary key,
+user_name varchar (20),
+password varchar(12),
+email varchar(22)
+);
+
+create table sumary(
+id int(3) primary key,
+total_user int (3),
+yahoo int(3),
+hotmail int(3),
+gmail int (3)
+);
+
+insert into sumary (id, total_user, yahoo, hotmail, gmail) values(1,0,0,0,0);
+INSERT INTO users(user_id, user_name, password, email) VALUES(15,"alp","al3p123","al1p@hotmail.com");
+
+INSERT INTO users(user_id, user_name, password, email) VALUES(17,"xyz","al3p13","al1p@gmail.com");
+
+ DELIMITER $$
+ create TRIGGER `insert_after` AFTER INSERT
+     ON `users`
+     FOR EACH ROW
+    BEGIN
+      UPDATE sumary SET id=1 WHERE id=1 ;
+      UPDATE sumary SET total_user=total_user+1  WHERE id=1;
+     UPDATE sumary SET gmail=gmail+1  WHERE new.email like '%gmail%';
+     UPDATE sumary SET yahoo=yahoo+1  WHERE new.email like '%yahoo%';
+     UPDATE sumary SET hotmail=hotmail+1  WHERE new.email like '%hotmail%';
+END$$
+ DELIMITER ;
+
+DELIMITER $$
+
+
+CREATE
+	TRIGGER `After_update_in_sumary` AFTER update 
+	ON `users` 
+	FOR EACH ROW 
+	BEGIN
+			 
+           UPDATE sumary SET gmail=gmail+1  WHERE new.email like '%gmail%';
+     UPDATE sumary SET yahoo=yahoo+1  WHERE new.email like '%yahoo%';
+     UPDATE sumary SET hotmail=hotmail+1  WHERE new.email like '%hotmail%';
+           
+			 
+    END$$
+ DELIMITER ;
+
+ CREATE procedure inserion(in a int(3), in b varchar(25), in c varchar(24), in e varchar(20))
+INSERT INTO users (user_id, user_name, password, email) VALUES (a,b,c,e);
+
+CREATE procedure alpha2( out b float, in a varchar(10))
+Select p_onhand into b from product where p_code=a;
+
+
+ user_id   | int(3)      | NO   | PRI | NULL    |       |
+| user_name | varchar(25) | NO   |     | NULL    |       |
+| password  | varchar(24) | NO   |     | NULL    |       |
+| email
+
+
+SELECT *
+FROM SALES NATURAL JOIN SALES_LINE; 

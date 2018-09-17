@@ -1,0 +1,15 @@
+00_Soap					120			22
+01_Shampoo				320			18
+02_Hand_sanitizer		120			17
+03_Toothpaste			120			24
+04_Toothbrushes			80			27
+05_Dental_Floss			200			29
+06_Deodorant			350			48
+07_Shaving_Supplies		220			45
+08_Baby_Wipes			300			21
+09_Facial_cleansing_cloths		600		22
+10_Toilet_paper			25				60
+11_Insect_spray			280				29
+12_Sunblock				20				14
+13_Medicated_body_powder		150		12
+14_Lotion/Lip_Balm		120				18
